@@ -39,10 +39,11 @@ class WsServer {
 
         if (clientCount === 4) {
           console.log('clientCount', clientCount);
+          this.Clients[token].send(`Sorry! Table is Full`)
           ws.close();
         } else {
           console.log('token', token, 'Client Count', Object.keys(this.Clients));
-          this.brodcast();
+          this.brodcast(`We Wait ${4 - Object.keys(this.Clients).length} Person `);
         }
 
         ws.on('close', () => {

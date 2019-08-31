@@ -1,0 +1,21 @@
+{
+  "name": "enevo-case-study",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "clean": "rm -rf node_modules",
+    "start:local": "npm i && nodemon ./app.js",
+    "start": "npm i && node app"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.1.0",
+    "ws": "^7.1.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}

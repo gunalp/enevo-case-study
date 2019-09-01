@@ -6,8 +6,9 @@
 
   function init() {
     output = document.getElementById("output");
-    var button = document.getElementById("endGame");
-    button.addEventListener("click", function (e) {
+    var endGameButton = document.getElementById("endGame");
+    var getTileButton = document.getElementById("getTile");
+    endGameButton.addEventListener("click", function (e) {
       websocket.send(JSON.stringify({
         data: {
           isGameEnd: true
@@ -16,7 +17,31 @@
         message: 'OK'
       }));
 
-      button.disabled = "true";
+      endGameButton.disabled = "true";
+    }, false);
+
+    getTileButton.addEventListener("click", function (e) {
+      websocket.send(JSON.stringify({
+        data: {
+          isGetTile: true
+        },
+        successed: true,
+        message: 'OK'
+      }));
+
+      getTileButton.disabled = "true";
+    }, false);
+
+    sendTile.addEventListener("click", function (e) {
+      websocket.send(JSON.stringify({
+        data: {
+          isSendTile: true
+        },
+        successed: true,
+        message: 'OK'
+      }));
+
+      sendTile.disabled = "true";
     }, false);
 
     testWebSocket();
@@ -50,7 +75,6 @@
 
   function onMessage(evt) {
     writeToScreen('<span style="color: blue;">RESPONSE: ' + evt.data + '</span>');
-    // websocket.close();
   }
 
   function onError(evt) {
@@ -75,5 +99,9 @@
 <h2>WebSocket Test</h2>
 
 <button id="endGame">Game End</button>
+
+<button id="getTile">Get Tile</button>
+
+<button id="sendTile">Send Tile</button>
 
 <div id="output"></div>

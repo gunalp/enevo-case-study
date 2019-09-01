@@ -10,8 +10,8 @@ class App {
 	}
 }
 App.initialize()
-    .then(() => console.log('[ENEVO CASE NETWORK APP] STARTED'))
-    .catch(err => {
-			console.error(err);
-			process.exit();
-		});
+	.then(() => console.log('[ENEVO CASE NETWORK APP] STARTED'))
+	.catch(err => {
+		console.error(err);
+		process.exit();
+	});

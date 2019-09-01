@@ -46,6 +46,14 @@ class WsServer {
     }
   }
 
+  gameEnd() {
+    this.brodcast(`Game is End`)
+
+    for (var i in this.Clients) {
+      this.Clients[i].close();
+    }
+  }
+
   selectTiles(tileCount) {
     const tiles = [];
     const allTiles = Helpers.getAllTiles()
@@ -90,6 +98,15 @@ class WsServer {
           this.Clients[token].send(`Sorry! Table is Full`)
           ws.close();
         }
+
+        ws.on('message', (message) => {
+          if (Helpers.isJSON(message)) {
+            const _message = JSON.parse(message);
+            if (_message.data.isGameEnd) {
+              this.gameEnd();
+            }
+          }
+        })
 
         ws.on('close', () => {
           delete this.Clients[token];
